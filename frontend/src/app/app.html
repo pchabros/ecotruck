@@ -1,11 +1,14 @@
 <main>
-  <div class="m-5">
+  <div class="flex flex-col gap-5 m-5">
     @if (vehicles(); as options) {
       <app-filters
         [selected]="selectedVehicle()"
         [options]="options"
         (selectedChange)="handleSelectedChange($event)"
       />
+    }
+    @if (fuelData(); as data) {
+      <app-fuel-consumption [data]="data" />
     }
   </div>
 </main>

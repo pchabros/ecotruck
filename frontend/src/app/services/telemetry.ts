@@ -21,8 +21,8 @@ export class TelemetryService {
     vehicleId: number,
     startDate?: string,
     endDate?: string,
-  ): Observable<WeeklyFuelData[]> {
-    return this.api.get<WeeklyFuelData[]>('telemetry/telemetry/weekly_fuel_consumption', {
+  ): Observable<WeeklyFuelData> {
+    return this.api.get<WeeklyFuelData>('telemetry/telemetry/weekly_fuel_consumption', {
       vehicle: vehicleId,
       start_date: startDate,
       end_date: endDate,

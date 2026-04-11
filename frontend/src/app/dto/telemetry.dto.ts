@@ -9,7 +9,7 @@ export interface Telemetry {
   longitude: number;
 }
 
-export interface WeeklyFuelData {
+export type WeeklyFuelData = {
   week: string;
   avgConsumption: number;
-}
+}[];

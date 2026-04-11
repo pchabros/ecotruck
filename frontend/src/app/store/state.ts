@@ -1,4 +1,4 @@
-import { Telemetry } from '../dto/telemetry.dto';
+import { Telemetry, WeeklyFuelData } from '../dto/telemetry.dto';
 import { Vehicle } from '../dto/vehicle.dto';
 
 export interface FiltersState {
@@ -15,16 +15,11 @@ export interface VehiclesState {
   error: string | null;
 }
 
-export interface WeeklyFuelData {
-  week: string;
-  avgConsumption: number;
-}
-
 export interface TelemetryState {
   telemetry: Telemetry[];
   telemetryLoading: boolean;
   telemetryError: string | null;
-  weeklyFuelData: WeeklyFuelData[];
+  weeklyFuelData: WeeklyFuelData | null;
   weeklyFuelDataLoading: boolean;
   weeklyFuelDataError: string | null;
 }
@@ -53,7 +48,7 @@ export const initialTelemetryState: TelemetryState = {
   telemetry: [],
   telemetryLoading: false,
   telemetryError: null,
-  weeklyFuelData: [],
+  weeklyFuelData: null,
   weeklyFuelDataLoading: false,
   weeklyFuelDataError: null,
 };
