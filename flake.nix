@@ -20,13 +20,12 @@
       perSystem = {pkgs, ...}: {
         devShells.default = pkgs.mkShell {
           buildInputs = with pkgs; [
-            nodejs_24
             python313
             python313Packages.ipython
+            nodejs_24
+            typescript-language-server
+            angular-language-server
           ];
-          shellHook = ''
-            echo "Welcome to the dev shell!"
-          '';
         };
       };
     };
