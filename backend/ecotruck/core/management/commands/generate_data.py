@@ -23,7 +23,7 @@ class Command(BaseCommand):
         ]
 
         today = timezone.make_aware(datetime(2026, 4, 11))
-        days_back = 14
+        days_back = 7 * 10
 
         for vehicle in vehicles:
             for day in range(days_back):
