@@ -8,7 +8,7 @@ class Vehicle(models.Model):
     model = models.CharField(max_length=100)
 
     def __str__(self):
-        return f"{self.brand} {self.model} ({self.name})"
+        return f"{self.name} ({self.brand} {self.model})"
 
 
 class Telemetry(models.Model):

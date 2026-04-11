@@ -1,5 +1,3 @@
-import logging
-
 from core.models import Telemetry
 from django.db.models import Avg, F
 from django.db.models.functions import TruncWeek
@@ -10,8 +8,6 @@ from rest_framework.response import Response
 
 from telemetry.filters import TelemetryFilter
 from telemetry.serializers import TelemetrySerializer
-
-logger = logging.getLogger(__name__)
 
 
 class TelemetryViewSet(viewsets.ReadOnlyModelViewSet):

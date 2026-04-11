@@ -1,5 +1,11 @@
-<main class="main">
-  <div class="content">
-    <app-filters />
+<main>
+  <div class="m-5">
+    @if (vehicles(); as options) {
+      <app-filters
+        [selected]="selectedVehicle()"
+        [options]="options"
+        (selectedChange)="handleSelectedChange($event)"
+      />
+    }
   </div>
 </main>
