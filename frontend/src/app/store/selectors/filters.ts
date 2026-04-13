@@ -6,3 +6,5 @@ export const selectFiltersState = createFeatureSelector<FiltersState>('filters')
 export const selectVehicleId = createSelector(selectFiltersState, (state) => state.vehicleId);
 
 export const selectDateRange = createSelector(selectFiltersState, (state) => state.dateRange);
+
+export const selectLocations = createSelector(selectFiltersState, (state) => state.locations);

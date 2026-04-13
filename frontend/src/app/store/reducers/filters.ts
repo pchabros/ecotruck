@@ -14,4 +14,5 @@ export const filtersReducer = createReducer(
     endDate,
   })),
   on(FiltersActions.resetFilters, () => initialFiltersState),
+  on(FiltersActions.setLocations, (state, { locations }) => ({ ...state, locations })),
 );

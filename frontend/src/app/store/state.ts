@@ -7,6 +7,7 @@ export interface FiltersState {
     startDate: string | undefined;
     endDate: string | undefined;
   };
+  locations: Telemetry['id'][];
 }
 
 export interface VehiclesState {
@@ -16,7 +17,7 @@ export interface VehiclesState {
 }
 
 export interface TelemetryState {
-  telemetry: Telemetry[];
+  telemetry: Telemetry[] | null;
   telemetryLoading: boolean;
   telemetryError: string | null;
   weeklyFuelData: WeeklyFuelData | null;
@@ -36,6 +37,7 @@ export const initialFiltersState: FiltersState = {
     startDate: undefined,
     endDate: undefined,
   },
+  locations: [],
 };
 
 export const initialVehiclesState: VehiclesState = {
@@ -45,7 +47,7 @@ export const initialVehiclesState: VehiclesState = {
 };
 
 export const initialTelemetryState: TelemetryState = {
-  telemetry: [],
+  telemetry: null,
   telemetryLoading: false,
   telemetryError: null,
   weeklyFuelData: null,

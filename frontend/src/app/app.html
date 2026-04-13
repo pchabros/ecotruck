@@ -10,5 +10,10 @@
     @if (fuelData(); as data) {
       <app-fuel-consumption [data]="data" />
     }
+    <mat-card appearance="outlined">
+      @if (telemetry(); as telemetry) {
+        <app-telemetry-list [data]="telemetry" [selected]="locations() ?? []" />
+      }
+    </mat-card>
   </div>
 </main>

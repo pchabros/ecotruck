@@ -11,7 +11,7 @@ export const telemetryReducer = createReducer(
   })),
   on(TelemetryActions.loadTelemetrySuccess, (state, { telemetry }) => ({
     ...state,
-    items: telemetry,
+    telemetry,
     telemetryLoading: false,
   })),
   on(TelemetryActions.loadTelemetryFailure, (state, { error }) => ({
