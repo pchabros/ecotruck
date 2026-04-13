@@ -1,5 +1,5 @@
-import { Component, input } from '@angular/core';
-import { MatListModule } from '@angular/material/list';
+import { Component, input, output } from '@angular/core';
+import { MatListModule, MatSelectionListChange } from '@angular/material/list';
 import { Telemetry } from '../../dto/telemetry.dto';
 import { MatCardModule } from '@angular/material/card';
 import { CoordPipe } from '../../pipes/coord-pipe';
@@ -11,9 +11,16 @@ import { CoordPipe } from '../../pipes/coord-pipe';
 })
 export class TelemetryList {
   data = input.required<Telemetry[]>();
-  selected = input.required<Telemetry['id'][]>();
+  selected = input.required<Telemetry['id'] | undefined>();
+
+  selectionChange = output<Telemetry['id']>();
 
   isSelected(location: Telemetry): boolean {
-    return this.selected().includes(location.id);
+    return this.selected() == location.id;
+  }
+
+  handleSelectionChange({ options }: MatSelectionListChange) {
+    const selected = options.find(({ selected }) => selected)?.value;
+    selected && this.selectionChange.emit(selected);
   }
 }

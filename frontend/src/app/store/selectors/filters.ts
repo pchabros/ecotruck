@@ -7,4 +7,4 @@ export const selectVehicleId = createSelector(selectFiltersState, (state) => sta
 
 export const selectDateRange = createSelector(selectFiltersState, (state) => state.dateRange);
 
-export const selectLocations = createSelector(selectFiltersState, (state) => state.locations);
+export const selectLocationId = createSelector(selectFiltersState, (state) => state.locationId);

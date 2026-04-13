@@ -7,6 +7,6 @@ export const FiltersActions = createActionGroup({
     'Set Vehicle': props<{ vehicleId?: number }>(),
     'Set Date Range': props<{ startDate?: string; endDate?: string }>(),
     'Reset Filters': emptyProps(), // TODO: remove if not needed
-    'Set Locations': props<{ locations: Telemetry['id'][] }>(),
+    'Set Location': props<{ locationId: Telemetry['id'] }>(),
   },
 });

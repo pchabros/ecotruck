@@ -2,12 +2,12 @@ import { Telemetry, WeeklyFuelData } from '../dto/telemetry.dto';
 import { Vehicle } from '../dto/vehicle.dto';
 
 export interface FiltersState {
-  vehicleId: number | undefined;
+  vehicleId: Vehicle['id'] | undefined;
   dateRange: {
     startDate: string | undefined;
     endDate: string | undefined;
   };
-  locations: Telemetry['id'][];
+  locationId: Telemetry['id'] | undefined;
 }
 
 export interface VehiclesState {
@@ -37,7 +37,7 @@ export const initialFiltersState: FiltersState = {
     startDate: undefined,
     endDate: undefined,
   },
-  locations: [],
+  locationId: undefined,
 };
 
 export const initialVehiclesState: VehiclesState = {

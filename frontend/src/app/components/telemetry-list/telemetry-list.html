@@ -1,9 +1,11 @@
-<mat-selection-list>
-  @for (telemetry of data(); track telemetry.id) {
-    <mat-card class="p-1 m-2" appearance="outlined">
-      <mat-list-option [value]="telemetry.id" [selected]="isSelected(telemetry)">
-        {{ telemetry.latitude | coord: 'lat' }} {{ telemetry.longitude | coord: 'lon' }}
-      </mat-list-option>
-    </mat-card>
-  }
-</mat-selection-list>
+<div class="h-[450px] overflow-auto border-gray-500">
+  <mat-selection-list [multiple]="false" (selectionChange)="handleSelectionChange($event)">
+    @for (telemetry of data(); track telemetry.id) {
+      <mat-card class="p-1 m-1" appearance="outlined">
+        <mat-list-option [value]="telemetry.id" [selected]="isSelected(telemetry)">
+          {{ telemetry.latitude | coord: 'lat' }} {{ telemetry.longitude | coord: 'lon' }}
+        </mat-list-option>
+      </mat-card>
+    }
+  </mat-selection-list>
+</div>

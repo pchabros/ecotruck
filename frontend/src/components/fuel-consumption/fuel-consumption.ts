@@ -1,11 +1,10 @@
 import { Component, computed, input } from '@angular/core';
 import { PlotlyComponent } from 'angular-plotly.js';
 import { WeeklyFuelData } from '../../app/dto/telemetry.dto';
-import { MatCardModule } from '@angular/material/card';
 
 @Component({
   selector: 'app-fuel-consumption',
-  imports: [MatCardModule, PlotlyComponent],
+  imports: [PlotlyComponent],
   templateUrl: './fuel-consumption.html',
 })
 export class FuelConsumption {

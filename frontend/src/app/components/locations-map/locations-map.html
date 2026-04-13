@@ -1,0 +1,8 @@
+<div class="flex flex-col gap-3 justify-center items-center">
+  <mat-button-toggle-group class="w-min" (change)="changeLayer($event.value)" value="street">
+    @for (layer of layersOptions; track layer) {
+      <mat-button-toggle [value]="layer">{{ layer }}</mat-button-toggle>
+    }
+  </mat-button-toggle-group>
+  <div #map class="h-[400px] w-full"></div>
+</div>

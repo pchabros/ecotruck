@@ -1,9 +1,9 @@
-import { Component, inject } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import { Filters } from './components/filters/filters';
 import { Store } from '@ngrx/store';
 import { VehiclesActions } from './store/actions/vehicles';
 import {
-  selectLocations,
+  selectLocationId,
   selectTelemetry,
   selectVehicleId,
   selectVehicles,
@@ -15,11 +15,14 @@ import { FiltersActions } from './store/actions/filters';
 import { FuelConsumption } from '../components/fuel-consumption/fuel-consumption';
 import { TelemetryList } from './components/telemetry-list/telemetry-list';
 import { MatCardModule } from '@angular/material/card';
+import { LocationsMap } from './components/locations-map/locations-map';
+import { Telemetry } from './dto/telemetry.dto';
+import { Notification } from './components/notification';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.html',
-  imports: [Filters, FuelConsumption, TelemetryList, MatCardModule],
+  imports: [Filters, FuelConsumption, TelemetryList, MatCardModule, LocationsMap, Notification],
 })
 export class App {
   private store = inject(Store);
@@ -32,9 +35,14 @@ export class App {
   vehicles = toSignal(this.store.select(selectVehicles));
   fuelData = toSignal(this.store.select(selectWeeklyFuelData));
   telemetry = toSignal(this.store.select(selectTelemetry));
-  locations = toSignal(this.store.select(selectLocations));
+  locationId = toSignal(this.store.select(selectLocationId));
+  selectedLocation = computed(() => this.telemetry()?.find(({ id }) => id == this.locationId()));
 
-  handleSelectedChange(value: Vehicle['id']) {
+  handleSelectedVehicle(value: Vehicle['id']) {
     this.store.dispatch(FiltersActions.setVehicle({ vehicleId: value }));
+  }
+
+  handleSelectedLocation(value: Telemetry['id']) {
+    this.store.dispatch(FiltersActions.setLocation({ locationId: value }));
   }
 }

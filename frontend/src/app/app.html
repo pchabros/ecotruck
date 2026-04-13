@@ -4,16 +4,33 @@
       <app-filters
         [selected]="selectedVehicle()"
         [options]="options"
-        (selectedChange)="handleSelectedChange($event)"
+        (selectedChange)="handleSelectedVehicle($event)"
       />
     }
-    @if (fuelData(); as data) {
-      <app-fuel-consumption [data]="data" />
-    }
-    <mat-card appearance="outlined">
-      @if (telemetry(); as telemetry) {
-        <app-telemetry-list [data]="telemetry" [selected]="locations() ?? []" />
+    <mat-card class="p-5" appearance="outlined">
+      @if (fuelData(); as data) {
+        <app-fuel-consumption [data]="data" />
+      } @else {
+        <app-notification message="Select vehicle" [minHeight]="500" />
       }
+    </mat-card>
+    <mat-card appearance="outlined">
+      <div class="flex gap-6 p-2 w-full">
+        <div class="w-1/2">
+          @if (telemetry(); as telemetry) {
+            <app-telemetry-list
+              [data]="telemetry"
+              [selected]="locationId()"
+              (selectionChange)="handleSelectedLocation($event)"
+            />
+          } @else {
+            <app-notification message="Select vehicle" />
+          }
+        </div>
+        <div class="w-1/2">
+          <app-locations-map [selected]="selectedLocation()" />
+        </div>
+      </div>
     </mat-card>
   </div>
 </main>
