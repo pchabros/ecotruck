@@ -1,6 +1,6 @@
 import { Component, computed, input } from '@angular/core';
 import { PlotlyComponent } from 'angular-plotly.js';
-import { WeeklyFuelData } from '../../app/dto/telemetry.dto';
+import { WeeklyFuelData } from '../../dto/telemetry.dto';
 
 @Component({
   selector: 'app-fuel-consumption',

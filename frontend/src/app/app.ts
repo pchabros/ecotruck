@@ -12,7 +12,7 @@ import {
 import { toSignal } from '@angular/core/rxjs-interop';
 import { Vehicle } from './dto/vehicle.dto';
 import { FiltersActions } from './store/actions/filters';
-import { FuelConsumption } from '../components/fuel-consumption/fuel-consumption';
+import { FuelConsumption } from './components/fuel-consumption/fuel-consumption';
 import { TelemetryList } from './components/telemetry-list/telemetry-list';
 import { MatCardModule } from '@angular/material/card';
 import { LocationsMap } from './components/locations-map/locations-map';
@@ -36,7 +36,7 @@ export class App {
   fuelData = toSignal(this.store.select(selectWeeklyFuelData));
   telemetry = toSignal(this.store.select(selectTelemetry));
   locationId = toSignal(this.store.select(selectLocationId));
-  selectedLocation = computed(() => this.telemetry()?.find(({ id }) => id == this.locationId()));
+  selectedLocation = computed(() => this.telemetry()?.find(({ id }) => id === this.locationId()));
 
   handleSelectedVehicle(value: Vehicle['id']) {
     this.store.dispatch(FiltersActions.setVehicle({ vehicleId: value }));

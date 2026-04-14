@@ -44,7 +44,7 @@ export class LocationsMap {
       .bindPopup(
         [
           `Time: ${selected.timestamp}`,
-          `Speed: ${selected.speed}km\h`,
+          `Speed: ${selected.speed}km/h`,
           `Mileage: ${selected.mileage}km`,
         ].join('<br>'),
       )

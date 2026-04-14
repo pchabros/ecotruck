@@ -1,7 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
-import { map, catchError, filter, switchMap } from 'rxjs/operators';
+import { map, catchError, filter, switchMap, shareReplay } from 'rxjs/operators';
 import { TelemetryService } from '../../services/telemetry';
 import { FiltersActions } from '../actions/filters';
 import { TelemetryActions } from '../actions/telemetry';
@@ -17,7 +17,8 @@ export class TelemetryEffects {
   private updatedFilters$ = this.actions$.pipe(
     ofType(FiltersActions.setVehicle, FiltersActions.setDateRange),
     switchMap(() => this.store.select(selectFiltersState)),
-    filter(({ vehicleId }) => vehicleId !== null),
+    filter(({ vehicleId }) => !!vehicleId),
+    shareReplay(1),
   );
 
   loadTelemetry$ = createEffect(() =>
