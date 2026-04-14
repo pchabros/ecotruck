@@ -1,5 +1,11 @@
 <main>
   <div class="flex flex-col gap-5 m-5">
+    @if (vehiclesError(); as error) {
+      <app-notification [message]="'Failed to load vehicles: ' + error" [minHeight]="50" />
+    }
+    @if (telemetryError(); as error) {
+      <app-notification [message]="'Failed to load telemetry: ' + error" [minHeight]="50" />
+    }
     @if (vehicles(); as options) {
       <app-filters
         [selectedVehicle]="selectedVehicle()"

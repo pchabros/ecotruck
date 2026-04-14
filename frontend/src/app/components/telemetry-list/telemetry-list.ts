@@ -16,7 +16,7 @@ export class TelemetryList {
   selectionChange = output<Telemetry['id']>();
 
   isSelected(location: Telemetry): boolean {
-    return this.selected() == location.id;
+    return this.selected() === location.id;
   }
 
   handleSelectionChange({ options }: MatSelectionListChange) {

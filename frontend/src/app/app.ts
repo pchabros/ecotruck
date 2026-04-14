@@ -5,8 +5,10 @@ import { VehiclesActions } from './store/actions/vehicles';
 import {
   selectLocationId,
   selectTelemetry,
+  selectTelemetryError,
   selectVehicleId,
   selectVehicles,
+  selectVehiclesError,
   selectWeeklyFuelData,
 } from './store';
 import { toSignal } from '@angular/core/rxjs-interop';
@@ -37,6 +39,8 @@ export class App {
   telemetry = toSignal(this.store.select(selectTelemetry));
   locationId = toSignal(this.store.select(selectLocationId));
   selectedLocation = computed(() => this.telemetry()?.find(({ id }) => id === this.locationId()));
+  vehiclesError = toSignal(this.store.select(selectVehiclesError));
+  telemetryError = toSignal(this.store.select(selectTelemetryError));
 
   handleSelectedVehicle(value: Vehicle['id']) {
     this.store.dispatch(FiltersActions.setVehicle({ vehicleId: value }));
