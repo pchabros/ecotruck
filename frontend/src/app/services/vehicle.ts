@@ -10,6 +10,6 @@ export class VehicleService {
   private api = inject(ApiService);
 
   getVehicles(): Observable<Vehicle[]> {
-    return this.api.get<Vehicle[]>('vehicle/vehicles');
+    return this.api.get<Vehicle[]>('vehicles');
   }
 }
