@@ -7,6 +7,7 @@ export const filtersReducer = createReducer(
   on(FiltersActions.setVehicle, (state, { vehicleId }) => ({
     ...state,
     vehicleId,
+    locationId: undefined,
   })),
   on(FiltersActions.setDateRange, (state, { startDate, endDate }) => ({
     ...state,

@@ -9,6 +9,9 @@ import { Telemetry } from '../../dto/telemetry.dto';
   templateUrl: './locations-map.html',
 })
 export class LocationsMap {
+  private static readonly INITIAL_CENTER = [52, 19.5] as const;
+  private static readonly INITIAL_ZOOM = 6;
+
   selected = input<Telemetry | undefined>();
 
   private mapDiv = viewChild.required<ElementRef>('map');
@@ -28,7 +31,8 @@ export class LocationsMap {
   initMap = effect(() => {
     const el = this.mapDiv()?.nativeElement;
     if (el && !this.map()) {
-      const map = leafletMap(el).setView([52, 19.5], 6);
+      const map = leafletMap(el);
+      this.setInitialView(map);
       this.layers.street.addTo(map);
       this.map.set(map);
       this.markersLayer.set(layerGroup().addTo(map));
@@ -37,9 +41,13 @@ export class LocationsMap {
 
   updateMarker = effect(() => {
     const selected = this.selected();
-    if (!selected) return;
     const layer = this.markersLayer();
     layer?.clearLayers();
+    const map = this.map();
+    if (!selected) {
+      map && this.setInitialView(map);
+      return;
+    }
     marker([selected.latitude, selected.longitude])
       .bindPopup(
         [
@@ -49,9 +57,12 @@ export class LocationsMap {
         ].join('<br>'),
       )
       .addTo(layer!);
-    const map = this.map();
     if (map) map.setView([selected.latitude, selected.longitude], 15);
   });
+
+  private setInitialView(map: Map) {
+    map.setView([...LocationsMap.INITIAL_CENTER], LocationsMap.INITIAL_ZOOM);
+  }
 
   changeLayer(name: string) {
     const map = this.map();

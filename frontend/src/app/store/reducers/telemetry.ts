@@ -1,9 +1,11 @@
 import { createReducer, on } from '@ngrx/store';
 import { initialTelemetryState } from '../state';
+import { FiltersActions } from '../actions/filters';
 import { TelemetryActions } from '../actions/telemetry';
 
 export const telemetryReducer = createReducer(
   initialTelemetryState,
+  on(FiltersActions.setVehicle, () => ({ ...initialTelemetryState })),
   on(TelemetryActions.loadTelemetry, (state) => ({
     ...state,
     telemetryLoading: true,
