@@ -4,8 +4,8 @@ import { Vehicle } from '../dto/vehicle.dto';
 export interface FiltersState {
   vehicleId: Vehicle['id'] | undefined;
   dateRange: {
-    startDate: string | undefined;
-    endDate: string | undefined;
+    startDate: Date | null;
+    endDate: Date | null;
   };
   locationId: Telemetry['id'] | undefined;
 }
@@ -34,8 +34,8 @@ export interface AppState {
 export const initialFiltersState: FiltersState = {
   vehicleId: undefined,
   dateRange: {
-    startDate: undefined,
-    endDate: undefined,
+    startDate: null,
+    endDate: null,
   },
   locationId: undefined,
 };

@@ -1,12 +1,11 @@
-import { createActionGroup, emptyProps, props } from '@ngrx/store';
+import { createActionGroup, props } from '@ngrx/store';
 import { Telemetry } from '../../dto/telemetry.dto';
 
 export const FiltersActions = createActionGroup({
   source: 'Filters',
   events: {
     'Set Vehicle': props<{ vehicleId?: number }>(),
-    'Set Date Range': props<{ startDate?: string; endDate?: string }>(),
-    'Reset Filters': emptyProps(), // TODO: remove if not needed
+    'Set Date Range': props<{ startDate: Date | null; endDate: Date | null }>(),
     'Set Location': props<{ locationId: Telemetry['id'] }>(),
   },
 });

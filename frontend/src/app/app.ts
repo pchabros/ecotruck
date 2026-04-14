@@ -45,4 +45,8 @@ export class App {
   handleSelectedLocation(value: Telemetry['id']) {
     this.store.dispatch(FiltersActions.setLocation({ locationId: value }));
   }
+
+  handleDateRangeChange(value: { startDate: Date | null; endDate: Date | null }) {
+    this.store.dispatch(FiltersActions.setDateRange(value));
+  }
 }

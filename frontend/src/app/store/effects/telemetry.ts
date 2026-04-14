@@ -15,7 +15,7 @@ export class TelemetryEffects {
   private telemetryService = inject(TelemetryService);
 
   private updatedFilters$ = this.actions$.pipe(
-    ofType(FiltersActions.setVehicle, FiltersActions.setDateRange, FiltersActions.resetFilters),
+    ofType(FiltersActions.setVehicle, FiltersActions.setDateRange),
     switchMap(() => this.store.select(selectFiltersState)),
     filter(({ vehicleId }) => vehicleId !== null),
   );

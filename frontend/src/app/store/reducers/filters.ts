@@ -10,9 +10,7 @@ export const filtersReducer = createReducer(
   })),
   on(FiltersActions.setDateRange, (state, { startDate, endDate }) => ({
     ...state,
-    startDate,
-    endDate,
+    dateRange: { startDate, endDate },
   })),
-  on(FiltersActions.resetFilters, () => initialFiltersState),
   on(FiltersActions.setLocation, (state, { locationId }) => ({ ...state, locationId })),
 );

@@ -43,7 +43,6 @@ INSTALLED_APPS = [
     "core",
     "vehicle",
     "telemetry",
-    "django_extensions",
 ]
 
 MIDDLEWARE = [
